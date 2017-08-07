@@ -3,7 +3,7 @@
 import turtle
 import random
 
-
+turtle.hideturtle()
 
 #the size of the screen
 WINDOW_SIZE_X = 500
@@ -11,11 +11,13 @@ WINDOW_SIZE_Y = 600
 turtle.setup(WINDOW_SIZE_X , WINDOW_SIZE_Y)
 
 RIGHT_ARROW = 'Right'
-LEFT_ARROW = 'Down'
+LEFT_ARROW = 'Left'
 TIME_STEP = 100
 m=0
 turtle_drops = turtle.clone()
 turtle_drops.hideturtle()
+turtle_drops.penup()
+turtle_drops.goto(-WINDOW_SIZE_X/2 + 10, WINDOW_SIZE_Y/2-50)
 turtle_drops.write('drops: '+str(m), font=('Arial',30,('bold','italic')))
 
 catcher = turtle.clone()
@@ -36,11 +38,19 @@ RIGHT=0
 LEFT=1
 
 #the edges of the screen
+<<<<<<< HEAD:mor- direction.py
 direction= RIGHT
 UP_EDGE = WINDOW_SIZE_Y/2
 DOWN_EDGE = -(WINDOW_SIZE_Y/2)
 RIGHT_EDGE = WINDOW_SIZE_X/2
 LEFT_EDGE = -(WINDOW_SIZE_X/2)
+=======
+
+UP_EDGE = 500
+DOWN_EDGE = -500
+RIGHT_EDGE = 800
+LEFT_EDGE = -800
+>>>>>>> ed5fc8f87a27bdd0ca7363e275d3214b09a0b25b:mor.py
 
 
     
@@ -60,6 +70,7 @@ def left():
 
 turtle.onkeypress(right , RIGHT_ARROW)
 turtle.onkeypress(left , LEFT_ARROW)
+<<<<<<< HEAD:mor- direction.py
 turtle.listen()
 
 def move_catcher():
@@ -111,6 +122,13 @@ if pos_list in foodpos_list:
 
 
 
+=======
+
+
+#food touch the down edge
+food = turtle.clone()
+foodpos = food.pos() 
+>>>>>>> ed5fc8f87a27bdd0ca7363e275d3214b09a0b25b:mor.py
 
 #drop_count = #the turtle need to count how many times the food drop
 
@@ -122,7 +140,11 @@ if pos_list in foodpos_list:
 ##    quit()
 ##        
 
+<<<<<<< HEAD:mor- direction.py
 if food.pos()[1]<= DOWN_EDGE:
+=======
+if foodpos[1] <= DOWN_EDGE:
+>>>>>>> ed5fc8f87a27bdd0ca7363e275d3214b09a0b25b:mor.py
     food.clearstamp()
     global m
     m=m+1
