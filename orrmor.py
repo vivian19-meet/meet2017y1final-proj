@@ -1,49 +1,69 @@
-#start- Mor
-
 import turtle
 import random
 
-
+turtle.penup()
+turtle.hideturtle()
 
 #the size of the screen
 WINDOW_SIZE_X = 500
 WINDOW_SIZE_Y = 600
 turtle.setup(WINDOW_SIZE_X , WINDOW_SIZE_Y)
 
-RIGHT_ARROW = 'Right'
-LEFT_ARROW = 'Down'
-TIME_STEP = 100
-m=0
-turtle_drops = turtle.clone()
-turtle_drops.hideturtle()
-turtle_drops.write('drops: '+str(m), font=('Arial',30,('bold','italic')))
+pos_list = []
+stamp_list = []
+foodpos_list = []
+foodstamps_list = []
 
+#the edges of the screen
+
+UP_EDGE = WINDOW_SIZE_Y/2
+DOWN_EDGE = -(WINDOW_SIZE_Y/2) 
+RIGHT_EDGE = WINDOW_SIZE_X/2
+LEFT_EDGE = -(WINDOW_SIZE_X/2)
+
+#making the catcher
+n=0
+m=0
 catcher = turtle.clone()
 catcher.shape("square")
 catcher.color('blue')
+turtle_score=turtle.clone()
+turtle_score.hideturtle()
+turtle_score.goto(-(WINDOW_SIZE_X)+50,-(WINDOW_SIZE_Y+50))
+turtle_score.write('score:'+str(n),font=("Arial",30,("bold","italic")))
+turtle_drops = turtle.clone()
+turtle_drops.hideturtle()
+turtle_drops.goto(-(WINDOW_SIZE_X)+50,-(WINDOW_SIZE_Y+40))
+turtle_drops.write('drops: '+str(m), font=('Arial',30,('bold','italic')))
 
-n=0
 
 
 START_LENGTH=4
 SQUARE_SIZE = 20
+catcher.goto(-(WINDOW_SIZE_X/2)+150,-(WINDOW_SIZE_Y/2)+90)
 
 
-catcher.goto(100,-200)
+for i in range (START_LENGTH):
+    x_pos=catcher.pos()[0]
+    y_pos=catcher.pos()[1]
 
+    x_pos=x_pos+SQUARE_SIZE
+
+    my_pos= (x_pos, y_pos)
+    catcher.goto(x_pos, y_pos)
+
+    pos_list.append(my_pos)
+    new_stamp = catcher.stamp()
+    stamp_list.append(new_stamp)
+
+
+RIGHT_ARROW = 'Right'
+LEFT_ARROW = 'Left'
+TIME_STEP = 100
 
 RIGHT=0
 LEFT=1
 
-#the edges of the screen
-direction= RIGHT
-UP_EDGE = WINDOW_SIZE_Y/2
-DOWN_EDGE = -(WINDOW_SIZE_Y/2)
-RIGHT_EDGE = WINDOW_SIZE_X/2
-LEFT_EDGE = -(WINDOW_SIZE_X/2)
-
-
-    
 def right():
     global direction
     direction= RIGHT
@@ -55,7 +75,7 @@ def left():
     global direction
 
     direction = LEFT
-    move_catcher
+    move_catcher()
     print('you moved left!')
 
 turtle.onkeypress(right , RIGHT_ARROW)
@@ -75,21 +95,14 @@ def move_catcher():
     elif direction==LEFT:
         catcher.goto(x_pos - SQUARE_SIZE, y_pos)
         print("You moved left!")
-
-
-for i in range (START_LENGTH):
-    x_pos=catcher.pos()[0]
-    y_pos=catcher.pos()[1]
-
-    x_pos=x_pos+SQUARE_SIZE
-
-    my_pos= (x_pos, y_pos)
-    catcher.goto(x_pos, y_pos)
-
+    my_pos=catcher.pos()
     pos_list.append(my_pos)
     new_stamp = catcher.stamp()
     stamp_list.append(new_stamp)
 
+    old_stamp = stamp_list.pop(0)
+    catcher.clearstamp(old_stamp)
+    pos_list.pop(0)
 
 def eat_food():
     
@@ -97,6 +110,7 @@ def eat_food():
     food.clearstamp(food_stamps[food_ind])
     food_pos.pop(food_ind)
     food_stamps.pop(food_ind)           
+        
 #needs to be in move food        
 if pos_list in foodpos_list:
     eat_food()
@@ -106,21 +120,6 @@ if pos_list in foodpos_list:
     turtle_score.goto(-350,-240)
     turtle_score.write("score:"+str(n),font=("Arial",30,("bold","italic")) )
 
-
-
-
-
-
-
-#drop_count = #the turtle need to count how many times the food drop
-
-    
-##if drop_count < 5:
-##    print('drop_count')
-##else:
-##    print('you missed 5 foods')
-##    quit()
-##        
 
 if food.pos()[1]<= DOWN_EDGE:
     food.clearstamp()
@@ -137,4 +136,8 @@ if m == 5:
 
 
 
-#end-Mor
+    
+
+
+
+    
