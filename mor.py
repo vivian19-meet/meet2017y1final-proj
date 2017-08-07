@@ -3,24 +3,26 @@
 import turtle
 import random
 
-
+turtle.hideturtle()
 
 #the size of the screen
 WINDOW_SIZE_X = 500
-WINDOW_SIZE_Y = 800
+WINDOW_SIZE_Y = 600
 turtle.setup(WINDOW_SIZE_X , WINDOW_SIZE_Y)
 
 RIGHT_ARROW = 'Right'
-LEFT_ARROW = 'Down'
+LEFT_ARROW = 'Left'
 TIME_STEP = 100
 m=0
 turtle_drops = turtle.clone()
 turtle_drops.hideturtle()
+turtle_drops.penup()
+turtle_drops.goto(-WINDOW_SIZE_X/2 + 10, WINDOW_SIZE_Y/2-50)
 turtle_drops.write('drops: '+str(m), font=('Arial',30,('bold','italic')))
 
 
 #the edges of the screen
-direction= UP
+
 UP_EDGE = 500
 DOWN_EDGE = -500
 RIGHT_EDGE = 800
@@ -39,11 +41,12 @@ def left():
     print('you moved left!')
 
 turtle.onkeypress(right , RIGHT_ARROW)
-turtle.onkeypress(left . LEFT_ARROW)
+turtle.onkeypress(left , LEFT_ARROW)
 
 
 #food touch the down edge
-food.pos() = foodpos_list[]
+food = turtle.clone()
+foodpos = food.pos() 
 
 #drop_count = #the turtle need to count how many times the food drop
 
@@ -55,7 +58,7 @@ food.pos() = foodpos_list[]
 ##    quit()
 ##        
 
-if foodpos_list >= DOWN_EDGE:
+if foodpos[1] <= DOWN_EDGE:
     food.clearstamp()
     global m
     m=m+1
