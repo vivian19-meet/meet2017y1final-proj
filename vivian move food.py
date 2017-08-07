@@ -15,7 +15,7 @@ def move_food():
     global food_y,food_x
     food.goto(food_x,food_y-20)
     food_y=food_y-20
-    turtle.ontimer(move_food,100)
+    turtle.ontimer(move_food,50)
 move_food()
 
 
