@@ -40,8 +40,20 @@ turtle_drops.goto(-WINDOW_SIZE_X/2+10,-WINDOW_SIZE_Y/2+10)
 turtle_drops.write('drops: '+str(m), font=('Arial',30,('bold','italic')))
 turtle_story=turtle.clone()
 turtle_story.hideturtle()
-turtle_story.goto(WINDOW_SIZE_X/2-450,WINDOW_SIZE_Y/2-40)
-turtle_story.write('story',font=("Arial",18,("bold","italic")))
+turtle_story.goto(WINDOW_SIZE_X/2-490,WINDOW_SIZE_Y/2-400)
+turtle_story.write("on a stormy windy foggy day...\n \
+Jeff the man was sailing in his little boat..\n \
+when the wind pushed his boat\n \
+to get lost in the fog.. \n \
+the next day Jeff woke up,\n \
+he was a hungry lost poor man in the\n \
+middle of the ocean...\n \
+but!  an airplane was passing and luckily\n \
+the pilot noticed jeff! \n \
+so he threw him a bunch of yummy food!\n \
+help jeff catch the food! \n \
+be careful! don't make jeff eat the trash!\n \
+Enjoy!",font=("Arial",18,("bold","italic")))
 
 SQUARE_SIZE = 20
 catcher.goto(-(WINDOW_SIZE_X/2)+150,-(WINDOW_SIZE_Y/2)+90)
@@ -90,6 +102,7 @@ def start():
     if var==0:
         global var
         turtle_story.clear()
+        turtle_story.goto(WINDOW_SIZE_X/2-450,WINDOW_SIZE_Y/2-50)
         turtle_story.write('FOOD DROP!',font=("Arial",30,("bold","italic")))
         var=1
         falling_food()
@@ -125,12 +138,14 @@ def move_catcher():
 ##    catcher.clearstamp(old_stamp)
 ##    pos_list.pop(0)
 ##
-food_type_list=['food-chicken.gif']#'food-chicken_nugets'#]
+food_type_list=['food-chicken_nagets.gif','food-hotdog.gif','food-coffie.gif','food-chicken.gif']#'food-chicken_nugets'#]
 food_list = []
 step = 25
 bottom = -WINDOW_SIZE_Y/2 + 50
-turtle.register_shape('food-chicken.gif')
-#turtle.register_shape('food-chicken_nugets.gif')
+turtle.register_shape('food-chicken_nagets.gif')
+turtle.register_shape('food-hotdog.gif')
+turtle.register_shape('food-coffie.gif')
+turtle.register_shape('food-chicken.gif')                     
 def create_food():
     y_pos = WINDOW_SIZE_Y/2 - 50
     min_x = -int(WINDOW_SIZE_X/2/unitsize)+1
