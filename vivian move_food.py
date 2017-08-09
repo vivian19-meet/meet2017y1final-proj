@@ -5,6 +5,7 @@ import random
 WINDOW_SIZE_X = 500
 WINDOW_SIZE_Y = 600
 turtle.setup(WINDOW_SIZE_X,WINDOW_SIZE_Y)
+turtle.bgpic('sea1.gif')
 turtle.penup()
 SQUARE_SIZE = 20
 food_list = []
