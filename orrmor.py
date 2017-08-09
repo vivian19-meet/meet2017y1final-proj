@@ -10,7 +10,7 @@ turtle.hideturtle()
 WINDOW_SIZE_X = 500
 WINDOW_SIZE_Y = 600
 turtle.setup(WINDOW_SIZE_X , WINDOW_SIZE_Y)
-
+turtle.bgpic('sea1.gif')
 foodpos_list = []
 
 #the edges of the screen
@@ -24,9 +24,9 @@ LEFT_EDGE = -(WINDOW_SIZE_X/2)
 n=0
 m=0
 catcher = turtle.clone()
-##turtle.register_shape('boat.gif')
-##catcher.shape("boat.gif")
-catcher.shape("square")
+turtle.register_shape('boat.gif')
+catcher.shape("boat.gif")
+##catcher.shape("square")
 
 
 turtle_score=turtle.clone()
@@ -89,11 +89,11 @@ def move_catcher():
     y_pos = my_pos[1]
     
     if direction==RIGHT:
-        catcher.goto(x_pos + SQUARE_SIZE, y_pos)
+        catcher.goto(x_pos + SQUARE_SIZE*3, y_pos)
         print("You moved right!")
     
     elif direction==LEFT:
-        catcher.goto(x_pos - SQUARE_SIZE, y_pos)
+        catcher.goto(x_pos - SQUARE_SIZE*3, y_pos)
         print("You moved left!")
 
 ##    my_pos=catcher.pos()
@@ -108,7 +108,7 @@ def move_catcher():
 
 food_list = []
 step = 25
-bottom = -WINDOW_SIZE_Y/2 + 100
+bottom = -WINDOW_SIZE_Y/2 + 50
 turtle.register_shape('food-chicken.gif')
 def create_food():
     y_pos = WINDOW_SIZE_Y/2 - 50
