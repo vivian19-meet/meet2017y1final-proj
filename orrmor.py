@@ -1,6 +1,6 @@
 import turtle
 import random
-
+import time
 unitsize = 20
 turtle.tracer(1,0)
 turtle.penup()
@@ -42,7 +42,7 @@ turtle_drops.goto(-WINDOW_SIZE_X/2+10,-WINDOW_SIZE_Y/2+10)
 turtle_drops.write('drops: '+str(m), font=('Arial',30,('bold','italic')))
 turtle_story=turtle.clone()
 turtle_story.hideturtle()
-turtle_story.goto(WINDOW_SIZE_X/2-490,WINDOW_SIZE_Y/2-400)
+turtle_story.goto(WINDOW_SIZE_X/2-490,WINDOW_SIZE_Y/2-365)
 turtle_story.write("on a stormy windy foggy day...\n \
 Jeff the man was sailing in his little boat..\n \
 when the wind pushed his boat\n \
@@ -58,7 +58,7 @@ be careful! don't make jeff eat the trash!\n \
 Enjoy!",font=("Arial",18,("bold","italic")))
 
 SQUARE_SIZE = 20
-catcher.goto(-(WINDOW_SIZE_X/2)+150,-(WINDOW_SIZE_Y/2)+100)
+catcher.goto(-(WINDOW_SIZE_X/2)+150,-(WINDOW_SIZE_Y/2)+120)
 catcher.showturtle()
 
 ##for i in range (START_LENGTH):
@@ -168,7 +168,7 @@ def create_food():
     food_list.append(food)
 food_delay = 0
 delay_num = 7
-
+fast_turtle = turtle.clone()
 trash_list = []
 def create_trash():
     y_pos = WINDOW_SIZE_Y/2 - 50
@@ -222,14 +222,27 @@ def falling_food():
         turtle_score.clear()
         turtle_score.write("score:"+str(n),font=("Arial",30,("bold","italic")) )
         #after score=25 food falls faster
-        if n>=25:
-            delay_num = 4
-        if n>=40:
+        if n==25:
+            delay_num = 5
+            fast_turtle.write('Now faster!', font=('Arial',30,('bold')))
+            time.sleep(1)
+            fast_turtle.clear()
+        if n==40:
             delay_num = 3
-        if n>=50:
+            fast_turtle.hideturtle()
+            fast_turtle.penup()
+            fast_turtle.goto(-70,0)
+            fast_turtle.write('Now super fast!', font=('Arial',30,('bold')))
+            time.sleep(1)
+            fast_turtle.clear()
+        if n==50:
             delay_num = 2
-            
-
+            fast_turtle.hideturtle()
+            fast_turtle.penup()
+            fast_turtle.goto(-70,0)
+            fast_turtle.write('extremely fast!!', font=('Arial',30,('bold')))
+            time.sleep(1)
+            fast_turtle.clear()
     if food_delay <= delay_num:
         food_delay += 1
     else:
@@ -238,6 +251,8 @@ def falling_food():
 
     if m == 5:
         print('game over!')
+        turtle.write('game over!',font=('Arial',30,('bold')))
+        time.sleep(3)
         print ('you droped 5!')
         quit()
 
@@ -252,6 +267,8 @@ def falling_food():
             boat_x = catcher.pos()[0]
             boat_y = catcher.pos()[1]
             if (x_pos >=  boat_x - 50 ) and (x_pos <=  boat_x + 50 ) and (y_pos >=  boat_y - 50 ) and (y_pos <=  boat_y + 20 ):
+                turtle.write('game over!',font=('Arial',30,('bold')))
+                time.sleep(3)
                 quit()
         else:
             trash.hideturtle()
