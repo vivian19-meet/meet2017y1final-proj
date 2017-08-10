@@ -198,6 +198,9 @@ def falling_food():
         #after score=25 food falls faster
         if n>=25:
             delay_num = 4
+            fast=('Now faster!')
+            turtle.write(str(fast),font=('Arial',30,('bold')))
+            
         if n>=40:
             delay_num = 2
 
