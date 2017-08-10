@@ -1,6 +1,11 @@
 import turtle
 import random
+#<<<<< HEAD
 import time
+#=======
+
+
+#>>>>>>> a6d595c27f12a9afb95e26e367493bcac739a723
 unitsize = 20
 turtle.tracer(1,0)
 turtle.penup()
@@ -101,8 +106,8 @@ turtle.onkeypress(left , LEFT_ARROW)
 turtle.listen()
 
 def start():
+    global var
     if var==0:
-        global var
         turtle_story.clear()
         turtle_story.goto(WINDOW_SIZE_X/2-450,WINDOW_SIZE_Y/2-50)
         
