@@ -4,6 +4,9 @@ import pygame
 #<<<<< HEAD
 import time
 #=======
+print('choose your player(girl/boy))')
+chosen=input()
+
 unitsize = 20
 turtle.tracer(1,0)
 turtle.penup()
@@ -18,8 +21,6 @@ turtle.register_shape('boat.gif')
 
 turtle.register_shape('boat_girl.gif')
 #choose a catcher
-print('choose your player(girl/boy))')
-chosen=input()
 
 catcher==chosen
 register_shape=[]
@@ -64,7 +65,7 @@ turtle_drops.goto(-WINDOW_SIZE_X/2+10,-WINDOW_SIZE_Y/2+10)
 turtle_drops.write('drops: '+str(m), font=('Arial',30,('bold','italic')))
 turtle_story=turtle.clone()
 turtle_story.hideturtle()
-turtle_story.goto(WINDOW_SIZE_X/2-490,WINDOW_SIZE_Y/2-365)
+turtle_story.goto(WINDOW_SIZE_X/2-490,WINDOW_SIZE_Y/2-405)
 turtle_story.write("on a stormy windy foggy day...\n \
 Jeff the man was sailing in his little boat..\n \
 when the wind pushed his boat\n \
@@ -77,7 +78,8 @@ the pilot noticed jeff! \n \
 so he threw him a bunch of yummy food!\n \
 help jeff catch the food! \n \
 be careful! don't make jeff eat the trash!\n \
-Enjoy!",font=("Arial",18,("bold","italic")))
+Enjoy!\n \
+press space to continue",font=("Arial",18,("bold","italic")))
 
 SQUARE_SIZE = 20
 catcher.goto(-(WINDOW_SIZE_X/2)+150,-(WINDOW_SIZE_Y/2)+120)
