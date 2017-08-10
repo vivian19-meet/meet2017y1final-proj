@@ -27,7 +27,9 @@ m=0
 catcher = turtle.clone()
 turtle.register_shape('boat.gif')
 catcher.shape("boat.gif")
-##catcher.shape("square")
+
+#turtle.register_shape('boat.gif')
+
 
 
 turtle_score=turtle.clone()
@@ -56,7 +58,7 @@ be careful! don't make jeff eat the trash!\n \
 Enjoy!",font=("Arial",18,("bold","italic")))
 
 SQUARE_SIZE = 20
-catcher.goto(-(WINDOW_SIZE_X/2)+150,-(WINDOW_SIZE_Y/2)+90)
+catcher.goto(-(WINDOW_SIZE_X/2)+150,-(WINDOW_SIZE_Y/2)+100)
 catcher.showturtle()
 
 ##for i in range (START_LENGTH):
@@ -145,7 +147,8 @@ bottom = -WINDOW_SIZE_Y/2 + 50
 turtle.register_shape('food-chicken_nagets.gif')
 turtle.register_shape('food-hotdog.gif')
 turtle.register_shape('food-coffie.gif')
-turtle.register_shape('food-chicken.gif')                     
+turtle.register_shape('food-chicken.gif')
+#turtle.register_shape('food-icecream.gif')
 def create_food():
     y_pos = WINDOW_SIZE_Y/2 - 50
     min_x = -int(WINDOW_SIZE_X/2/unitsize)+1
@@ -159,6 +162,24 @@ def create_food():
     food_list.append(food)
 food_delay = 0
 delay_num = 7
+
+trash_list = []
+def create_trash():
+    y_pos = WINDOW_SIZE_Y/2 - 50
+    min_x = -int(WINDOW_SIZE_X)+1
+    max_x = int(WINDOW_SIZE_X/2/unitsize)-1
+    x_pos = random.randint(min_x,max_x)*unitsize
+    trash = turtle.clone()
+##    chosen = random.randint(0,len(food_type_list)-1)
+##    trash.shape(trash_type_list[chosen])
+    turtle.register_shape("trash-bag.gif")
+    trash.shape("trash-bag.gif")
+    trash.goto(x_pos,y_pos)
+    trash.showturtle()
+##    trash.shape("square")
+    trash_list.append(trash)
+trash_delay = 0
+delay_num_t = 1
     
 def falling_food():
     global food_delay, m, n, delay_num
@@ -210,23 +231,37 @@ def falling_food():
         print('game over!')
         print ('you droped 5!')
         quit()
-        
+
+    #falling trash
+    global trash_delay, delay_num_t, trash_list
+    for trash in trash_list:
+        x_pos = trash.pos()[0]
+        y_pos = trash.pos()[1]
+        if y_pos >= bottom:
+            y_pos = y_pos - step
+            trash.goto(x_pos,y_pos)
+            boat_x = catcher.pos()[0]
+            boat_y = catcher.pos()[1]
+            if (x_pos >=  boat_x - 50 ) and (x_pos <=  boat_x + 50 ) and (y_pos >=  boat_y - 50 ) and (y_pos <=  boat_y + 20 ):
+                quit()
+        else:
+            trash.hideturtle()
+            
+    if  trash_delay <= delay_num_t:
+        trash_delay += 1
+    else:
+        trash_delay = 0
+        create_trash()
+##    create_trash()
+
     turtle.ontimer(falling_food,100)
+
+    
+
+
 
 #falling_food()
 
-def create_trash():
-    y_pos = WINDOW_SIZE_Y/2 - 50
-    min_x = -int(WINDOW_SIZE_X/2/unitsize)+1
-    max_x = int(WINDOW_SIZE_X/2/unitsize)-1
-    x_pos = random.randint(min_x,max_x)*unitsize
-    trash = turtle.clone()
-    chosen = random.randint(0,len(food_type_list)-1)
-    trash.shape(trash_type_list[chosen])
-    trash.goto(x_pos,y_pos)
-    trash.showturtle()
-    trash_list.append(food)
-trash_delay = 0
-delay_num = 13
+
 
 
